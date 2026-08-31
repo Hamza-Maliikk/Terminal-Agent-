@@ -6,7 +6,8 @@ Each tool has: (1) a schema (to tell the model what's available) and (2) the act
 import os
 import subprocess
 
-
+# Add the UNDO STACK for storing last messages
+UNDO_STACK = []
 # ============================================================
 # TOOL SCHEMAS - These are sent to the model so it knows
 # which tools are available and what parameters they need
@@ -85,6 +86,15 @@ def read_file(path):
 
 
 def write_file(path, content):
+    # Purana content save karo undo ke liye, agar file pehle se hai
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            old_content = f.read()
+        UNDO_STACK.append((path, old_content))
+    else:
+        # File naye se ban rahi hai, undo par delete kar denge
+        UNDO_STACK.append((path, None))
+
     try:
         with open(path, "w", encoding="utf-8") as f:
             f.write(content)
@@ -134,3 +144,25 @@ def execute_tool(name, tool_input):
         return run_command(tool_input["command"])
     else:
         return f"Error: no tool named '{name}'."
+
+def undo_last_change():
+    if not UNDO_STACK:
+        return "Koi change nahi hai jo undo ho sake."
+
+    path, old_content = UNDO_STACK.pop()
+
+    if old_content is None:
+        # Ye file naye se bani thi, isliye delete kar do
+        try:
+            os.remove(path)
+            return f"Undo ho gaya: '{path}' delete kar di (kyunke ye nayi bani thi)."
+        except Exception as e:
+            return f"Error: undo nahi ho saka -> {e}"
+    else:
+        # Purana content wapas likh do
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(old_content)
+            return f"Undo ho gaya: '{path}' apni purani halat mein wapas aa gayi."
+        except Exception as e:
+            return f"Error: undo nahi ho saka -> {e}"        

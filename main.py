@@ -9,7 +9,7 @@ import os
 import json
 from dotenv import load_dotenv
 from openai import OpenAI
-from tools import TOOLS, execute_tool
+from tools import TOOLS, execute_tool, undo_last_change
 
 # Load API key from .env file
 load_dotenv()
@@ -81,7 +81,10 @@ def main():
         if user_input.lower() in ("exit", "quit"):
             print("Goodbye!")
             break
-
+        if user_input.lower() == "undo":
+            result = undo_last_change()
+            print(f"\n{result}\n")
+            continue    
         if not user_input:
             continue
 

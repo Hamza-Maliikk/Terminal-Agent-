@@ -1,4 +1,4 @@
-# 🖥️ Terminal Agent
+# Terminal Agent
 
 A lightweight AI coding agent that runs directly in your terminal.
 It can read files, write files, list directories, and run shell commands — all guided by plain natural language instructions. Powered by OpenAI's GPT models.
@@ -7,7 +7,7 @@ Think of it as a minimal version of tools like **Claude Code** or **Codex CLI**:
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Natural language control** — just describe what you want, no special syntax needed
 - **File operations** — read, write, and list files/folders on your behalf
@@ -18,7 +18,7 @@ Think of it as a minimal version of tools like **Claude Code** or **Codex CLI**:
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 
 The agent runs a simple loop:
 
@@ -30,7 +30,7 @@ The agent runs a simple loop:
 
 ---
 
-## 📁 File Structure
+##  File Structure
 
 | File | Purpose |
 |---|---|
@@ -43,7 +43,7 @@ The agent runs a simple loop:
 
 ---
 
-## 🚀 Setup
+##  Setup
 
 **1. Open a terminal inside the project folder**
 ```
@@ -78,7 +78,7 @@ python main.py
 
 ---
 
-## 💬 Usage
+##  Usage
 
 Once running, just type what you need:
 
@@ -110,7 +110,7 @@ You: exit
 
 ---
 
-## 🛠️ Available Tools
+##  Available Tools
 
 | Tool | What it does |
 |---|---|
@@ -122,7 +122,7 @@ You: exit
 
 ---
 
-## ⚠️ Notes & Limitations
+##  Notes & Limitations
 
 - This is a simple/educational build — not meant for production use
 - Requires an OpenAI account with billing enabled, otherwise API calls fail with a quota error
@@ -132,7 +132,7 @@ You: exit
 
 ---
 
-## 🔮 Possible Improvements
+##  Possible Improvements
 
 - Multi-step undo (full history instead of just the last change)
 - Persistent undo history saved to disk

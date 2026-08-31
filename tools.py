@@ -152,14 +152,14 @@ def undo_last_change():
     path, old_content = UNDO_STACK.pop()
 
     if old_content is None:
-        # Ye file naye se bani thi, isliye delete kar do
+        # file was newly created, so delete it
         try:
             os.remove(path)
             return f"Undo ho gaya: '{path}' delete kar di (kyunke ye nayi bani thi)."
         except Exception as e:
             return f"Error: undo nahi ho saka -> {e}"
     else:
-        # Purana content wapas likh do
+        # Revert to old content
         try:
             with open(path, "w", encoding="utf-8") as f:
                 f.write(old_content)

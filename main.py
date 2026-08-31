@@ -11,7 +11,6 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from tools import TOOLS, execute_tool, undo_last_change
 
-# Load API key from .env file
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 

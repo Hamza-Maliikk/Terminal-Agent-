@@ -1,0 +1,20 @@
+# Environment variables - API keys yahan hoti hain, kabhi share na karein
+.env
+
+# Python cache/build files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment folders
+venv/
+env/
+.venv/
+
+# OS ki apni files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE settings
+.vscode/
+.idea/
